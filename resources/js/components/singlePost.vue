@@ -202,7 +202,13 @@ export default {
       console.log(post);
       axios
         .put("/post/" + postId, post)
-        .then((data) => {})
+        .then((data) => {
+             this.$emit("editPost", {
+            postId: postId,
+            content: this.postEdited,
+            title:this.EditedpostTitle
+          });
+        })
         .catch((err) => {
           console.log(err.data);
           console.log(err.response.data.message);
@@ -211,7 +217,9 @@ export default {
     deletePost(postId) {
       axios
         .delete("/post/" + postId)
-        .then((data) => {})
+        .then((data) => {
+            this.$emit("deletedPost", postId);
+        })
         .catch((err) => {
           console.log(err.data);
           console.log(err.response.data.message);

@@ -98,7 +98,7 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label class="">Comment</label>
+              <label class="">Reply</label>
               <input
                 type="text"
                 :name="commentData.user.name"

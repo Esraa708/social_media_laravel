@@ -2515,11 +2515,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {// this. getPosts()
   },
-  props: ['user'],
+  props: ["user"],
   data: function data() {
     return {
       title: "",
@@ -2617,6 +2616,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           $state.complete();
         }
       });
+    },
+    editPost: function editPost(post) {
+      console.log(post);
+      this.posts.forEach(function (ele) {
+        if (ele.id == post.postId) {
+          ele.post_content = post.content;
+          ele.post_title = post.title;
+        }
+      });
+    },
+    deletePost: function deletePost(value) {
+      console.log(value);
+      var index = this.posts.findIndex(function (ele) {
+        return ele.id == value;
+      });
+      this.posts.splice(index, 1);
     }
   }
 });
@@ -2965,19 +2980,31 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     editPost: function editPost(postId) {
+      var _this3 = this;
+
       var post = {
         title: this.EditedpostTitle,
         content: this.postEdited,
         user_id: this.userData.id
       };
       console.log(post);
-      axios.put("/post/" + postId, post).then(function (data) {})["catch"](function (err) {
+      axios.put("/post/" + postId, post).then(function (data) {
+        _this3.$emit("editPost", {
+          postId: postId,
+          content: _this3.postEdited,
+          title: _this3.EditedpostTitle
+        });
+      })["catch"](function (err) {
         console.log(err.data);
         console.log(err.response.data.message);
       });
     },
     deletePost: function deletePost(postId) {
-      axios["delete"]("/post/" + postId).then(function (data) {})["catch"](function (err) {
+      var _this4 = this;
+
+      axios["delete"]("/post/" + postId).then(function (data) {
+        _this4.$emit("deletedPost", postId);
+      })["catch"](function (err) {
         console.log(err.data);
         console.log(err.response.data.message);
       });
@@ -7482,7 +7509,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.element[data-v-fa6affac] {\n    display: inline-flex;\n    align-items: center;\n}\ni.fa-camera[data-v-fa6affac] {\n    margin: 10px;\n    cursor: pointer;\n    font-size: 30px;\n}\ni[data-v-fa6affac]:hover {\n    opacity: 0.6;\n}\ninput[type=\"file\"][data-v-fa6affac] {\n    display: block;\n    /* visibility: hidden; */\n}\n", ""]);
+exports.push([module.i, "\n.element[data-v-fa6affac] {\n  display: inline-flex;\n  align-items: center;\n}\ni.fa-camera[data-v-fa6affac] {\n  margin: 10px;\n  cursor: pointer;\n  font-size: 30px;\n}\ni[data-v-fa6affac]:hover {\n  opacity: 0.6;\n}\ninput[type=\"file\"][data-v-fa6affac] {\n  display: block;\n  /* visibility: hidden; */\n}\n", ""]);
 
 // exports
 
@@ -39621,7 +39648,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", {}, [_vm._v("Comment")]),
+                  _c("label", {}, [_vm._v("Reply")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -40062,11 +40089,7 @@ var render = function() {
                           }
                         }
                       },
-                      [
-                        _vm._v(
-                          "\n                                share\n                            "
-                        )
-                      ]
+                      [_vm._v("\n                share\n              ")]
                     )
                   ])
                 ]
@@ -40087,7 +40110,8 @@ var render = function() {
                 { key: post.id },
                 [
                   _c("single-post", {
-                    attrs: { postData: post, userData: _vm.user }
+                    attrs: { postData: post, userData: _vm.user },
+                    on: { deletedPost: _vm.deletePost, editPost: _vm.editPost }
                   })
                 ],
                 1
@@ -40156,7 +40180,7 @@ var render = function() {
             expression: "snackbar"
           }
         },
-        [_vm._v("\n        " + _vm._s(_vm.text) + "\n        ")]
+        [_vm._v("\n    " + _vm._s(_vm.text) + "\n    ")]
       )
     ],
     1
