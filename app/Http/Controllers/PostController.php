@@ -24,7 +24,7 @@ class PostController extends Controller
         $user = Auth::user();
         $userIds = $user->friends->pluck('id')->toArray();
         array_push($userIds, $user->id);
-        $posts = Post::with('user')->whereIn('user_id', $userIds)->orderby('created_at', 'desc')->paginate(5);
+        $posts = Post::with('user', 'images')->whereIn('user_id', $userIds)->orderby('created_at', 'desc')->paginate(5);
         return response()->json([
             'posts' => $posts
         ]);
@@ -43,7 +43,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
- 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -61,13 +61,13 @@ class PostController extends Controller
             foreach ($request->file('files') as $file) {
                 $image = new PostImage();
                 $path = $file->store('postimages');
-                $image->image_path = $path;
+                $image->image_path = public_path().$path;
                 $post->images()->save($image);
                 $image->save();
             }
         }
 
-        return response(['message' => 'post is added successfully', 'post' => $post->load('user')], 200);
+        return response(['message' => 'post is added successfully', 'post' => $post->load('user', 'images')], 200);
     }
 
     /**
@@ -89,7 +89,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-  
+
 
     /**
      * Update the specified resource in storage.
