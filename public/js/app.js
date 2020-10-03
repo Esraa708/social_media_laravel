@@ -2933,10 +2933,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {// console.log(this.postData)
   },
-  props: ['postData', 'userData'],
+  props: ["postData", "userData"],
   data: function data() {
     return {
       commentShow: false,
@@ -7528,7 +7539,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card-link:hover {\n  cursor: pointer;\n}\n.comment form {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n}\n.pull-right.reply span:hover {\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.card-link:hover {\n  cursor: pointer;\n}\n.comment form {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n}\n.pull-right.reply span:hover {\n  cursor: pointer;\n}\n.images{\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: flex-start;\n  overflow: auto;\n}\n.images img{\n  /* flex:1 */\n}\n", ""]);
 
 // exports
 
@@ -40491,7 +40502,25 @@ var render = function() {
         _vm._v(" "),
         _c("p", { staticClass: "card-text" }, [
           _vm._v("\n      " + _vm._s(_vm.postData.post_content) + "\n    ")
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "images py-3" },
+          _vm._l(_vm.postData.images, function(image) {
+            return _c("img", {
+              key: image.id,
+              attrs: {
+                src: "http://localhost:8000/" + image.image_path,
+                alt: "",
+                srcset: "",
+                width: "200",
+                height: "200"
+              }
+            })
+          }),
+          0
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-footer" }, [

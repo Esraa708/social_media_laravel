@@ -61,7 +61,7 @@ class PostController extends Controller
             foreach ($request->file('files') as $file) {
                 $image = new PostImage();
                 $path = $file->store('postimages');
-                $image->image_path = public_path().$path;
+                $image->image_path = $path;
                 $post->images()->save($image);
                 $image->save();
             }

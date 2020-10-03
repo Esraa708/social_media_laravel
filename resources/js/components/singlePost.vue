@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <div class="mr-2">
             <img
-              class="rounded-circle"                                                                                  
+              class="rounded-circle"
               width="45"
               src="https://picsum.photos/50/50"
               alt=""
@@ -45,6 +45,17 @@
       <p class="card-text">
         {{ postData.post_content }}
       </p>
+      <div class="images py-3">
+        <img
+          :src="'http://localhost:8000/' + image.image_path"
+          v-for="image in postData.images"
+          :key="image.id"
+          alt=""
+          srcset=""
+          width="200"
+          height="200"
+        />
+      </div>
     </div>
     <div class="card-footer">
       <a @click="displayComments(postData.id)" class="card-link"
@@ -149,7 +160,7 @@ export default {
   mounted() {
     // console.log(this.postData)
   },
-  props: ['postData', 'userData'],
+  props: ["postData", "userData"],
   data() {
     return {
       commentShow: false,
@@ -184,9 +195,8 @@ export default {
       axios
         .post("/comment", comment)
         .then((data) => {
-           this.commentShow =false;
+          this.commentShow = false;
           this.displayComments(this.postData.id);
-          
         })
         .catch((err) => {
           console.log(err.data);
@@ -203,10 +213,10 @@ export default {
       axios
         .put("/post/" + postId, post)
         .then((data) => {
-             this.$emit("editPost", {
+          this.$emit("editPost", {
             postId: postId,
             content: this.postEdited,
-            title:this.EditedpostTitle
+            title: this.EditedpostTitle,
           });
         })
         .catch((err) => {
@@ -218,7 +228,7 @@ export default {
       axios
         .delete("/post/" + postId)
         .then((data) => {
-            this.$emit("deletedPost", postId);
+          this.$emit("deletedPost", postId);
         })
         .catch((err) => {
           console.log(err.data);
@@ -244,5 +254,16 @@ export default {
 }
 .pull-right.reply span:hover {
   cursor: pointer;
+}
+.images{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: auto;
+
+}
+.images img{
+  /* flex:1 */
 }
 </style>
