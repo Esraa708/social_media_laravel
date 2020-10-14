@@ -1,4 +1,4 @@
-# This is a blog post that user can:-
+# This is  blog posts where user can:-
  - have friends
  - add posts, comments. replies
  - edit, delete his owen posts, comments,replies
