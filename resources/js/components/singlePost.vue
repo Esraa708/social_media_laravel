@@ -36,11 +36,11 @@
       <div class="text-muted h7 mb-2">
         <!-- <i class="fa fa-clock-o"></i>10 min ago -->
       </div>
-      <a class="card-link" href="#">
+   
         <h5 class="card-title">
           {{ postData.post_title }}
         </h5>
-      </a>
+  
 
       <p class="card-text">
         {{ postData.post_content }}
@@ -73,7 +73,7 @@
         />
         <button
           type="submit"
-          class="btn btn-info"
+          class="btn "
           @click.prevent="sumbitComment(postData.id)"
         >
           comment
@@ -242,7 +242,9 @@ export default {
   },
 };
 </script>
-<style lang="css">
+<style lang="scss">
+//  @import '../../sass/app';
+@import '../../sass/_variables.scss';
 .card-link:hover {
   cursor: pointer;
 }
@@ -251,10 +253,37 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-}
+ 
+  button{
+    background: $sub-main-color;
+    color: #fff;
+  }
+
+} 
 .pull-right.reply span:hover {
   cursor: pointer;
 }
+.pull-right.reply a{
+  color:#38846a;
+}
+.card-body{
+  h5{
+    color:#000;
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
+  .card-text{
+ font-size: 1.3rem;;
+
+}
+
+}
+.card-footer{
+  a{
+    color:$main-color;
+  }
+}
+
 .images{
   display: flex;
   flex-direction: row;
@@ -263,6 +292,7 @@ export default {
   overflow: auto;
 
 }
+
 .images img{
   /* flex:1 */
 }

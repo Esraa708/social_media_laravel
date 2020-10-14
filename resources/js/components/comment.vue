@@ -14,11 +14,11 @@
               />
               <div class="media-body">
                 <div class="row">
-                  <div class="col-8 d-flex">
+                  <div class="col-8 d-flex pb-0">
                     <h5>{{ commentData.user.name }}</h5>
                     <!-- <span>- 2 hours ago</span> -->
                   </div>
-                  <div class="col-4">
+                  <div class="col-4 pb-0">
                     <div
                       class="pull-right reply"
                       v-if="userData.id == commentData.user.id"
@@ -30,14 +30,14 @@
                         :id="commentData.id"
                         ><span><i class="fa fa-edit"></i> </span
                       ></a>
-                      <a href="" @click.prevent="deleteComment(commentData.id)"
+                      <a href="" class="" @click.prevent="deleteComment(commentData.id)"
                         ><span><i class="fa fa-trash"></i> </span
                       ></a>
                     </div>
                   </div>
                 </div>
                 {{ commentData.content }} <br />
-                <a @click="displayReplies(commentData.id)" class="card-link"
+                <a @click="displayReplies(commentData.id)" class="card-link reply-btn"
                   ><i class="fa fa-reply"></i> reply</a
                 >
                 <div class="comment" v-if="showReply">
@@ -55,7 +55,7 @@
                       class="btn btn-info"
                       @click.prevent="sumbitReply(commentData.id)"
                     >
-                      comment
+                      reply
                     </button>
                   </form>
                 </div>
@@ -219,7 +219,11 @@ export default {
   },
 };
 </script>
-<style lang="css" scoped>
+<style lang="scss" >
+@import '../../sass/_variables.scss';
+.reply-btn{
+  color:$main-color
+}
 .card-link:hover {
   cursor: pointer;
 }

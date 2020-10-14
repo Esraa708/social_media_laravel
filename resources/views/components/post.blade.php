@@ -1,4 +1,4 @@
-<div class="card gedf-card mb-0">
+<div class="card gedf-card mb-3">
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex justify-content-between align-items-center">

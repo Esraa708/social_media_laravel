@@ -10,10 +10,10 @@
     /></a>
     <div class="media-body">
       <div class="row">
-        <div class="col-12 d-flex">
+        <div class="col-8 d-flex">
           <h5>{{ replyData.user.name }}</h5>
-          <!-- <span>- 3 hours ago</span> -->
         </div>
+        <div class="col-4">
         <div class="pull-right reply" v-if="replyData.user.id == userData.id">
           <a
             href=""
@@ -25,6 +25,7 @@
           <a href="" @click.prevent="deleteReply(replyData.id)"
             ><span><i class="fa fa-trash"></i> </span
           ></a>
+        </div>
         </div>
       </div>
       {{ replyData.content }}
@@ -84,7 +85,7 @@
     </div>
   </div>
 </template>
-<style lang="css" scoped></style>
+<style lang="scss" ></style>
 <script>
 export default {
   props: ["replyData", "userData"],

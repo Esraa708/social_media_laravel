@@ -17,7 +17,7 @@
                         @endif
                         @endforeach
                     </select>
-                    <input type="submit" value="send" class="btn btn-success mt-3">
+                    <input type="submit" value="send" class="btn send mt-3">
                 </div>
 
 

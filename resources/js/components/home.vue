@@ -1,41 +1,11 @@
 <template>
   <div class="container">
     <div class="row mb-3">
-      <div class="col-12">
+      <div class="col-8 mx-auto">
         <!--- \\\\\\\Post-->
         <div class="card gedf-card w-2">
           <div class="card-header">
             <h3>What is on your mind??</h3>
-            <!-- <ul
-                            class="nav nav-tabs card-header-tabs"
-                            id="myTab"
-                            role="tablist"
-                        >
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link active"
-                                    id="posts-tab"
-                                    data-toggle="tab"
-                                    href="#posts"
-                                    role="tab"
-                                    aria-controls="posts"
-                                    aria-selected="true"
-                                    >Make a publication</a
-                                >
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link"
-                                    id="images-tab"
-                                    data-toggle="tab"
-                                    role="tab"
-                                    aria-controls="images"
-                                    aria-selected="false"
-                                    href="#images"
-                                    >Images</a
-                                >
-                            </li>
-                        </ul>-->
           </div>
           <div class="card-body">
             <div class="tab-content" id="myTabContent">
@@ -85,10 +55,10 @@
               <div class="btn-group">
                 <button
                   type="submit"
-                  class="btn btn-primary"
+                  class="btn "
                   @click.prevent="addPost()"
                 >
-                  share
+                  Post
                 </button>
               </div>
             </div>
@@ -97,7 +67,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-8 mx-auto">
         <div v-for="post in posts" :key="post.id">
           <single-post
             :postData="post"
@@ -131,7 +101,18 @@
     </v-snackbar>
   </div>
 </template>
-<style lang="css" scoped>
+<style lang="scss" >
+@import '../../sass/_variables.scss';
+.card-header{
+  background: $main-color;
+  color:#fff;
+}
+.btn-group{
+  button{
+    background: $sub-main-color;
+    color:#fff;
+  }
+}
 .element {
   display: inline-flex;
   align-items: center;
@@ -147,6 +128,12 @@ i:hover {
 input[type="file"] {
   display: block;
   /* visibility: hidden; */
+}
+form{
+  button{
+    background: $sub-main-color;
+    color: #fff;
+  }
 }
 </style>
 <script>
